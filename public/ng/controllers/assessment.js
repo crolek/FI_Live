@@ -37,7 +37,7 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
     }
 
     function start() {
-        $http.get('frenemy.laet.us/assessment/create')
+        $http.get('/assessment/create')
             .success(function(data) {
                 doAssessment(data.id);
             });
