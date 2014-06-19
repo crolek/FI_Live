@@ -9,7 +9,7 @@ routes.get('/assessment/create', function(req, res){
 
 	traitify.setVersion("v1");
 	traitify.setPrivateKey("rg8ogn28rfjdcr0708tm3bgmdi");
-	traitify.createAssessment("deck-id", function(assessment){
+	traitify.createAssessment("f5bc482e-8a2a-45c1-a7d4-8574625396b9", function(assessment){
 	  // Use assessment here.
 	  res.send(assessment);
 	});
