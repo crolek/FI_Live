@@ -1,5 +1,5 @@
 body {
-  background: #d32;
+  background: #9ac;
   color: #fee;
   font-size: 14px;
   line-height: 1;
@@ -32,4 +32,12 @@ h1 {
   background-image: url("/images/twitter.png");
   background-repeat: no-repeat;
   background-position: center;
+}
+.tf-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.result-image {
+  max-width: 800px;
+  margin: 0 auto;
 }
