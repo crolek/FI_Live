@@ -4,31 +4,50 @@
     <title>Frenemy</title>
 </head>
 <body>
+		<a href="https://twitter.com/share" class="twitter-share-button" data-via="crolek" data-size="large" data-hashtags="filive">Tweet</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+		
+<!--
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+		<script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+		<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.5.0/firebase-simple-login.js'>
+		</script>
+-->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.7/angular.min.js"></script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/0.5.0/angularfire.min.js"></script>
+<script src='https://cdn.firebase.com/v0/firebase-simple-login.js'></script>
 
-<a href="https://twitter.com/share" class="twitter-share-button" data-via="crolek" data-size="large"
-   data-hashtags="filive">Tweet</a>
-<script>!function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
-    if (!d.getElementById(id)) {
-        js = d.createElement(s);
-        js.id = id;
-        js.src = p + '://platform.twitter.com/widgets.js';
-        fjs.parentNode.insertBefore(js, fjs);
-    }
-}(document, 'script', 'twitter-wjs');</script>
+		<script type='text/javascript'>
+			// instatiate the FirebaseSimpleLogin and monitor the user's auth state
+/*			var chatRef = new Firebase("https://torid-fire-513.firebaseio.com/");
+			var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
+				if (error) {
+				// an error occurred while attempting login
+				console.log(error);
+				} else if (user) {
+				// user authenticated with Firebase
+				console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
+				} else {
+				// user is logged out
+				// attempt to log the user in with your preferred authentication provider
+			auth.login("twitter");
+				}
+			});
+*/
+		</script>
+<!--
+		<h1>Wedgies thingy</h1>
+		<script src='https://www.wedgies.com/js/widgets.js'></script><noscript><a href='https://www.wedgies.com/question/53a2573c6fddaa0200000fc1'>Are you as badass as me?</a></noscript><div class='wedgie-widget' data-wd-pending data-data-wd-type='embed' data-wd-version='v1' id='53a2573c6fddaa0200000fc1' style='max-width: 640px; margin: 0px auto' ></div>
+-->
+<script src="../js/firebase-twitter-auth.js"></script>
 
+      <div ng-app="app" ng-controller="AuthCtrl as thing">
+          <button type="submit" class="btn btn-default" ng-click="signIn()">Sign In / Sign Up</button>
+</div>
 
-<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
-<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.5.0/firebase-simple-login.js'>
-</script>
-
-<script src="/js/firebase-twitter-auth.js"></script>
-
-<h1>Wedgies thingy</h1>
-<script src='https://www.wedgies.com/js/widgets.js'></script>
-<noscript><a href='https://www.wedgies.com/question/53a2573c6fddaa0200000fc1'>Are you as badass as me?</a></noscript>
-<div class='wedgie-widget' data-wd-pending data-data-wd-type='embed' data-wd-version='v1' id='53a2573c6fddaa0200000fc1'
-     style='max-width: 640px; margin: 0px auto'></div>
+</body>
 
 </body>
 </html>
