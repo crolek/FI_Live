@@ -7,7 +7,7 @@ app.controller('AuthCtrl', [
 		
 		$scope.signIn = function () {
 			$rootScope.auth.$login("twitter").then(function(user) {
-				console.log("sherpa we failed");
+				console.log("sherpa we are logged in!");
 			}, function(error) {
 				console.log(error);
 			});
