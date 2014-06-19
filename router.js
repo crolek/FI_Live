@@ -1,5 +1,9 @@
 var routes = module.exports = require('express').Router();
 
+routes.get('/:route', function(req, res) {
+    res.redirect('/#/' + req.params.route);
+});
+
 routes.get('/assessment/create', function(req, res){
 	var traitify = require("traitify");
 	// live url
