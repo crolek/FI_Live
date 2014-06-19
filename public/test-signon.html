@@ -1,41 +1,34 @@
 <!DOCTYPE html>
 <html>
-	<head>
-	<title>Frenemy</title>
-	</head>
-	<body>
+<head>
+    <title>Frenemy</title>
+</head>
+<body>
 
-		<a href="https://twitter.com/share" class="twitter-share-button" data-via="crolek" data-size="large" data-hashtags="filive">Tweet</a>
-		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-		
+<a href="https://twitter.com/share" class="twitter-share-button" data-via="crolek" data-size="large"
+   data-hashtags="filive">Tweet</a>
+<script>!function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+    if (!d.getElementById(id)) {
+        js = d.createElement(s);
+        js.id = id;
+        js.src = p + '://platform.twitter.com/widgets.js';
+        fjs.parentNode.insertBefore(js, fjs);
+    }
+}(document, 'script', 'twitter-wjs');</script>
 
-		<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
-		<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.5.0/firebase-simple-login.js'>
-		</script>
 
-		<script type='text/javascript'>
-			// instatiate the FirebaseSimpleLogin and monitor the user's auth state
-			var chatRef = new Firebase("https://torid-fire-513.firebaseio.com/");
-			var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
-				if (error) {
-				// an error occurred while attempting login
-				console.log(error);
-				} else if (user) {
-				// user authenticated with Firebase
-				console.log('User ID: ' + user.id + ', Provider: ' + user.provider);
-				} else {
-				// user is logged out
-				// attempt to log the user in with your preferred authentication provider
-			auth.login("twitter");
-				}
-			});
-				
-			
+<script type='text/javascript' src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.5.0/firebase-simple-login.js'>
+</script>
 
-		</script>
+<script src="/js/firebase-twitter-auth.js"></script>
 
-		<h1>Wedgies thingy</h1>
-		<script src='https://www.wedgies.com/js/widgets.js'></script><noscript><a href='https://www.wedgies.com/question/53a2573c6fddaa0200000fc1'>Are you as badass as me?</a></noscript><div class='wedgie-widget' data-wd-pending data-data-wd-type='embed' data-wd-version='v1' id='53a2573c6fddaa0200000fc1' style='max-width: 640px; margin: 0px auto' ></div>
-		
-	</body>
+<h1>Wedgies thingy</h1>
+<script src='https://www.wedgies.com/js/widgets.js'></script>
+<noscript><a href='https://www.wedgies.com/question/53a2573c6fddaa0200000fc1'>Are you as badass as me?</a></noscript>
+<div class='wedgie-widget' data-wd-pending data-data-wd-type='embed' data-wd-version='v1' id='53a2573c6fddaa0200000fc1'
+     style='max-width: 640px; margin: 0px auto'></div>
+
+</body>
 </html>
