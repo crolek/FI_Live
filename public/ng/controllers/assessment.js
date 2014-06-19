@@ -32,7 +32,9 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
         Traitify.ui.slideDeck(assessId, ".tf-assessment", function (data) {
             //Traitify.ui.resultsProp(assessId, ".tf-assessment", {showTraits: true});
             Traitify.getPersonalityTypes(assessId, function(data){
-              console.log(data);
+              var HeroName = data.personality_types[0].personality_type.name
+              var HeroSide = HeroSides[HeroName];
+              
             });
         });
     }
