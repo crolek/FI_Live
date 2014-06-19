@@ -1,0 +1,29 @@
+{
+  "name": "frenemy",
+  "version": "0.0.0",
+  "homepage": "https://github.com/crolek/FI_Live",
+  "authors": [
+    "Matt Balmer <contact@mattbalmer.com>"
+  ],
+  "description": "Find out who your superhero friends and enemies are!",
+  "main": "index.html",
+  "keywords": [
+    "superheros",
+    "traitify"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "app/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.2.18",
+    "angularfire": "~0.7.1",
+    "reset-css": "~2.0.20110126",
+    "bootstrap": "~3.1.1"
+  }
+}
