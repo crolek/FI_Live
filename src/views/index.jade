@@ -1,7 +1,14 @@
+include includes/mixins
+
 doctype html
 html
     head
         title Frenemy
+
+        meta(name='viewport', content='width=device-width, user-scalable=no')
+
+        +css('reset-css/reset.css', '/vendor')
+        +css('style.css')
 
     body
         h1 Frenemy

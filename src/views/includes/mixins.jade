@@ -1,0 +1,9 @@
+mixin js(url)
+    script(src='/js/'+url)
+
+mixin ng(url)
+    script(src='/js/ng/'+url)
+
+mixin css(url, base)
+    - if(base == undefined) base = '/css'
+    link(rel='stylesheet', href=base+'/'+url)

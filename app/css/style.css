@@ -1,6 +1,6 @@
 body {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  background: #ccc;
+  background: #469;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1;
 }
