@@ -17,8 +17,6 @@ var app = express();
 // Configuration
 //==================
 app.set('port', config.port);
-app.set('views', __dirname + '/app/views');
-app.set('view engine', 'jade');
 app.use( require('body-parser')() );
 
 //==================

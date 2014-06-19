@@ -1,4 +1,4 @@
-app = angular.module('app', ['firebase']);
+var app = angular.module('app', ['firebase']);
 
 app.controller('AuthCtrl', [
 	'$scope', '$rootScope', '$firebaseAuth', function($scope, $rootScope, $firebaseAuth) {
