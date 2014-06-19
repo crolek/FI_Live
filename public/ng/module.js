@@ -1,4 +1,4 @@
-angular.module('frenemy', ['ngRoute']);
+angular.module('frenemy', ['ngRoute', 'firebase']);
 
 angular.module('frenemy').config(function($routeProvider, $locationProvider) {
     $routeProvider
