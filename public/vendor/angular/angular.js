@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.2.18
+ * @license AngularJS v1.2.19-build.256+sha.8b25ea1
  * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
@@ -68,7 +68,7 @@ function minErr(module) {
       return match;
     });
 
-    message = message + '\nhttp://errors.angularjs.org/1.2.18/' +
+    message = message + '\nhttp://errors.angularjs.org/1.2.19-build.256+sha.8b25ea1/' +
       (module ? module + '/' : '') + code;
     for (i = 2; i < arguments.length; i++) {
       message = message + (i == 2 ? '?' : '&') + 'p' + (i-2) + '=' +
@@ -1953,11 +1953,11 @@ function setupModuleLoader(window) {
  * - `codeName` – `{string}` – Code name of the release, such as "jiggling-armfat".
  */
 var version = {
-  full: '1.2.18',    // all of these placeholder strings will be replaced by grunt's
+  full: '1.2.19-build.256+sha.8b25ea1',    // all of these placeholder strings will be replaced by grunt's
   major: 1,    // package task
   minor: 2,
-  dot: 18,
-  codeName: 'ear-extendability'
+  dot: 19,
+  codeName: 'snapshot'
 };
 
 
@@ -3081,16 +3081,16 @@ forEach({
  * @returns {string} hash string such that the same input will have the same hash string.
  *         The resulting string key is in 'type:hashKey' format.
  */
-function hashKey(obj) {
+function hashKey(obj, nextUidFn) {
   var objType = typeof obj,
       key;
 
-  if (objType == 'object' && obj !== null) {
+  if (objType == 'function' || (objType == 'object' && obj !== null)) {
     if (typeof (key = obj.$$hashKey) == 'function') {
       // must invoke on object to keep the right this
       key = obj.$$hashKey();
     } else if (key === undefined) {
-      key = obj.$$hashKey = nextUid();
+      key = obj.$$hashKey = (nextUidFn || nextUid)();
     }
   } else {
     key = obj;
@@ -3102,7 +3102,13 @@ function hashKey(obj) {
 /**
  * HashMap which can use objects as keys
  */
-function HashMap(array){
+function HashMap(array, isolatedUid) {
+  if (isolatedUid) {
+    var uid = 0;
+    this.nextUid = function() {
+      return ++uid;
+    };
+  }
   forEach(array, this.put, this);
 }
 HashMap.prototype = {
@@ -3112,7 +3118,7 @@ HashMap.prototype = {
    * @param value value to store can be any type
    */
   put: function(key, value) {
-    this[hashKey(key)] = value;
+    this[hashKey(key, this.nextUid)] = value;
   },
 
   /**
@@ -3120,7 +3126,7 @@ HashMap.prototype = {
    * @returns {Object} the value for the key
    */
   get: function(key) {
-    return this[hashKey(key)];
+    return this[hashKey(key, this.nextUid)];
   },
 
   /**
@@ -3128,7 +3134,7 @@ HashMap.prototype = {
    * @param key
    */
   remove: function(key) {
-    var value = this[key = hashKey(key)];
+    var value = this[key = hashKey(key, this.nextUid)];
     delete this[key];
     return value;
   }
@@ -3725,7 +3731,7 @@ function createInjector(modulesToLoad) {
   var INSTANTIATING = {},
       providerSuffix = 'Provider',
       path = [],
-      loadedModules = new HashMap(),
+      loadedModules = new HashMap([], true),
       providerCache = {
         $provide: {
             provider: supportObject(provider),
@@ -6078,7 +6084,7 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
               directiveNormalize(nodeName_(node).toLowerCase()), 'E', maxPriority, ignoreDirective);
 
           // iterate over the attributes
-          for (var attr, name, nName, ngAttrName, value, nAttrs = node.attributes,
+          for (var attr, name, nName, ngAttrName, value, isNgAttr, nAttrs = node.attributes,
                    j = 0, jj = nAttrs && nAttrs.length; j < jj; j++) {
             var attrStartName = false;
             var attrEndName = false;
@@ -6086,9 +6092,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
             attr = nAttrs[j];
             if (!msie || msie >= 8 || attr.specified) {
               name = attr.name;
+              value = trim(attr.value);
+
               // support ngAttr attribute binding
               ngAttrName = directiveNormalize(name);
-              if (NG_ATTR_BINDING.test(ngAttrName)) {
+              if (isNgAttr = NG_ATTR_BINDING.test(ngAttrName)) {
                 name = snake_case(ngAttrName.substr(6), '-');
               }
 
@@ -6101,9 +6109,11 @@ function $CompileProvider($provide, $$sanitizeUriProvider) {
 
               nName = directiveNormalize(name.toLowerCase());
               attrsMap[nName] = name;
-              attrs[nName] = value = trim(attr.value);
-              if (getBooleanAttrName(node, nName)) {
-                attrs[nName] = true; // presence means true
+              if (isNgAttr || !attrs.hasOwnProperty(nName)) {
+                  attrs[nName] = value;
+                  if (getBooleanAttrName(node, nName)) {
+                    attrs[nName] = true; // presence means true
+                  }
               }
               addAttrInterpolateDirective(node, directives, value, nName);
               addDirective(directives, nName, 'A', maxPriority, ignoreDirective, attrStartName,
@@ -13732,7 +13742,7 @@ function $SceProvider() {
 
     /**
      * @ngdoc method
-     * @name $sce#parse
+     * @name $sce#parseAs
      *
      * @description
      * Converts Angular {@link guide/expression expression} into a function.  This is like {@link
@@ -19834,7 +19844,7 @@ var ngNonBindableDirective = ngDirective({ terminal: true, priority: 1000 });
  * When one person, perhaps John, views the document, "John is viewing" will be shown.
  * When three people view the document, no explicit number rule is found, so
  * an offset of 2 is taken off 3, and Angular uses 1 to decide the plural category.
- * In this case, plural category 'one' is matched and "John, Marry and one other person are viewing"
+ * In this case, plural category 'one' is matched and "John, Mary and one other person are viewing"
  * is shown.
  *
  * Note that when you specify offsets, you must provide explicit number rules for
@@ -21609,7 +21619,7 @@ var selectDirective = ['$compile', '$parse', function($compile,   $parse) {
                   // rather then the element.
                   (element = optionTemplate.clone())
                       .val(option.id)
-                      .attr('selected', option.selected)
+                      .prop('selected', option.selected)
                       .text(option.label);
                 }
 
