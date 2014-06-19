@@ -1,6 +1,6 @@
-angular.module('frenemy').controller('index', function($scope, $rootScope, $firebaseAuth, $location) {
+angular.module('frenemy').controller('index', function($scope, $rootScope, $firebase, $location) {
     var ref = new Firebase('https://torid-fire-513.firebaseio.com/');
-    $rootScope.auth = $firebaseAuth(ref);
+    $rootScope.auth = $firebase(ref);
 
     $scope.signIn = function () {
         $rootScope.auth.$login("twitter").then(function(user) {
