@@ -3,9 +3,7 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
     Traitify.setPublicKey("s7agspmnf4147ld53fmmekan42");
     Traitify.setHost("https://api-sandbox.traitify.com");
     Traitify.setVersion("v1");
-    Traitify.get("/decks/f5bc482e-8a2a-45c1-a7d4-8574625396b9", function (deck_info) {
-        deck = deck_info;
-    });
+
     var HeroSides = {
         "Storm": "Marvel",
         "Spiderman": "Marvel",
@@ -32,7 +30,10 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
 
     function doAssessment(assessId) {
         Traitify.ui.slideDeck(assessId, ".tf-assessment", function (data) {
-            Traitify.ui.resultsProp(assessId, ".tf-assessment", {showTraits: true});
+            //Traitify.ui.resultsProp(assessId, ".tf-assessment", {showTraits: true});
+            Traitify.getPersonalityTypes(assessId, function(data){
+              console.log(data);
+            });
         });
     }
 
