@@ -1,4 +1,6 @@
 angular.module('frenemy').controller('assessment', function ($scope, $http) {
+    var Fb = new Firebase("https://torid-fire-513.firebaseio.com/");
+
     var deck = null;
     Traitify.setPublicKey("s7agspmnf4147ld53fmmekan42");
     Traitify.setHost("https://api-sandbox.traitify.com");
