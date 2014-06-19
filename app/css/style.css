@@ -1,6 +1,21 @@
 body {
-  background: #469;
-  color: #fff;
+  background: #d32;
+  color: #fee;
   font-size: 14px;
   line-height: 1;
+  font-family: 'Ubuntu', Calibri, "Helvetica Neue", Helvetica, Verdana, Trebuchet, sans-serif;
+}
+h1 {
+  font-size: 37px;
+  text-align: center;
+}
+.logo {
+  width: 280px;
+  height: 60px;
+  background-image: url("/images/logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: transparent;
+  overflow: hidden;
+  margin: 0 auto;
 }
