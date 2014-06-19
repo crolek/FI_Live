@@ -34,7 +34,9 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
             Traitify.getPersonalityTypes(assessId, function(data){
               var HeroName = data.personality_types[0].personality_type.name
               var HeroSide = HeroSides[HeroName];
-              
+              window.location = "http://frenemy.laet.us/results?name=" +
+                encodeURIComponent(HeroName) + "&side=" +
+                encodeURIComponent(HeroSide);
             });
         });
     }
