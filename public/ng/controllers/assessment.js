@@ -1,4 +1,4 @@
-angular.module('frenemy').controller('assessment', function ($scope) {
+angular.module('frenemy').controller('assessment', function ($scope, $http) {
     var deck = null;
     Traitify.setPublicKey("s7agspmnf4147ld53fmmekan42");
     Traitify.setHost("https://api-sandbox.traitify.com");
@@ -37,15 +37,10 @@ angular.module('frenemy').controller('assessment', function ($scope) {
     }
 
     function start() {
-        var xhr = new XmlHttpRequest();
-        xhr.onreadystatechange = function (e) {
-            if (e.readyState == 4) {
-                var id = JSON.parse(e.responseText).id;
-                doAssessment(id);
-            }
-        }
-        xhr.open("GET", "frenemy.laet.us/assessment/create");
-        xhr.send();
+        $http.get('frenemy.laet.us/assessment/create')
+            .success(function(data) {
+                doAssessment(data.id);
+            });
     }
 
     start();
