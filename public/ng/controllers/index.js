@@ -5,7 +5,7 @@ angular.module('frenemy').controller('index', function($scope, $rootScope, $fire
     $scope.signIn = function () {
         $rootScope.auth.$login("twitter").then(function(user) {
             console.log("sherpa we are logged in!");
-            $location.path("/sherpa");
+            $location.path("/assesment");
         }, function(error) {
             console.log(error);
         });
