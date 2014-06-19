@@ -1,6 +1,18 @@
 module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+          connect: {
+            server: {
+                options: {
+                    port: 8000,
+                    hostname: '*',
+                    keepalive: true,
+                    onCreateServer: function(server, connect, options) {
+                        
+                    }
+                }
+            }
+        },
         stylus: {
             compile: {
                 options: {
@@ -47,6 +59,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks('grunt-contrib-stylus');
+    grunt.loadNpmTasks('grunt-contrib-connect');
 
     grunt.registerTask('default', ['stylus', 'jade', 'watch']);
 };

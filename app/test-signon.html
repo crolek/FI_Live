@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Frenemy</title>
+	</head>
+	<body>
+
+
+		<script type='text/javascript' src='https://cdn.firebase.com/js/simple-login/1.5.0/firebase-simple-login.js'>
+		</script>
+
+		<script type='text/javascript'>
+
+		// instatiate the FirebaseSimpleLogin and monitor the user's auth state
+		var chatRef = new Firebase('https://SampleChat.firebaseIO.com');
+		var auth = new FirebaseSimpleLogin(chatRef, function(error, user) {
+			if (error) {
+			// an error occurred while attempting login
+			alert(error);
+			} else if (user) {
+			// user authenticated with Firebase
+			alert('User ID: ' + user.id + ', Provider: ' + user.provider);
+			} else {
+			// user is logged out
+			}
+		});
+			
+		// attempt to log the user in with your preferred authentication provider
+		auth.login('<provider>');
+
+		</script>
+	</body>
+</html>
