@@ -1,4 +1,6 @@
 angular.module('frenemy').controller('assessment', function ($scope, $http) {
+    var Fb = new Firebase("https://torid-fire-513.firebaseio.com/");
+
     var deck = null;
     Traitify.setPublicKey("s7agspmnf4147ld53fmmekan42");
     Traitify.setHost("https://api-sandbox.traitify.com");
@@ -32,7 +34,8 @@ angular.module('frenemy').controller('assessment', function ($scope, $http) {
         Traitify.ui.slideDeck(assessId, ".tf-assessment", function (data) {
             //Traitify.ui.resultsProp(assessId, ".tf-assessment", {showTraits: true});
             Traitify.getPersonalityTypes(assessId, function(data){
-              var HeroName = data.personality_types[0].personality_type.name
+                Fb.push(data);
+              var HeroName = data.personality_types[0].personality_type.famous_people[0].name;
               var HeroSide = HeroSides[HeroName];
               window.location = "http://frenemy.laet.us/#/results?name=" +
                 encodeURIComponent(HeroName) + "&side=" +
