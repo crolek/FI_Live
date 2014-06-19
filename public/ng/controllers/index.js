@@ -1,13 +1,13 @@
-angular.module('frenemy').controller('index', function($scope, $rootScope, $firebase, $location) {
+angular.module('frenemy').controller('index', function($scope, $rootScope, $firebaseAuth, $location) {
     var ref = new Firebase('https://torid-fire-513.firebaseio.com/');
+    $rootScope.auth = $firebaseAuth(ref);
 
     $scope.signIn = function () {
-        new FirebaseSimpleLogin(ref, function(err, user) {
-            if(err) {
-                console.log(err);
-            } else {
-                $location.path("/assessment");
-            }
+        $rootScope.auth.$login("twitter").then(function(user) {
+            console.log("sherpa we are logged in!");
+            $location.path("/assesment");
+        }, function(error) {
+            console.log(error);
         });
     }
 });
