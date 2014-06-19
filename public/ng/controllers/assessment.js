@@ -44,7 +44,7 @@ angular.module('frenemy').controller('assessment', function ($scope) {
                 doAssessment(id);
             }
         }
-        xhr.open("GET", "frenemy.laet.us/assessment/create");
+        xhr.open("GET", "http://frenemy.laet.us/assessment/create");
         xhr.send();
     }
 
